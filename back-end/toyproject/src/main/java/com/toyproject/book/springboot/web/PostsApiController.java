@@ -3,6 +3,7 @@ package com.toyproject.book.springboot.web;
 import com.toyproject.book.springboot.service.posts.PostsService;
 import com.toyproject.book.springboot.web.dto.PostsResponseDto;
 import com.toyproject.book.springboot.web.dto.PostsSaveRequestDto;
+import com.toyproject.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,5 +27,16 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")  // 조회 API
     public PostsResponseDto findById (@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @PutMapping("/api/v1/posts/{id}")   // 수정 API
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
+        return postsService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")   // 삭제 API
+    public Long delete(@PathVariable Long id){
+        postsService.delete(id);
+        return id;
     }
 }

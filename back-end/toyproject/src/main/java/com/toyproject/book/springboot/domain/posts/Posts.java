@@ -1,5 +1,6 @@
 package com.toyproject.book.springboot.domain.posts;
 
+import com.toyproject.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter  // 롬복 어노테이션 - 클래스 내의 모든 필드의 Getter 메소드를 자동생성
 @NoArgsConstructor  // 롬복 어노테이션 - 기본 생성자 자동 추가, public Posts() {}와 같은 효과
 @Entity  // JPA 어노테이션 : 테이블과 링크될 클래스
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     // 테이블 기본키 (PK)
     @Id
@@ -54,5 +55,15 @@ public class Posts {
         this.date = date;
         this.price = price;
         this.author = author;
+    }
+
+    // 게시글 수정하는 함수
+    public void update(String title, String description, String link, String contact, String price, String date){
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.contact = contact;
+        this.date = date;
+        this.price = price;
     }
 }
