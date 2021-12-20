@@ -1,0 +1,21 @@
+.profile {
+  width: 200px;
+  height: 200px;
+  border-radius: 70%;
+  margin-bottom: 10px;
+}
+
+.resign {
+  background-color: #AEB4C2;
+  border: none;
+}
+
+.resign:hover {
+  background-color: rgb(134, 137, 146)
+}
+
+.myList {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
