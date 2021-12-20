@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "공대 눈송뱃지 공구",
+      "author": "눈송이1",
+      "product": "뱃지",
+      "price": "10,000",
+      "people": "30명",
+      "date": "21.11.28 ~ 21.12.31",
+      "link": "https://search.shopping.naver.com/aaaa",
+      "contact": "http://www.naver.com",
+      "description": "설명"
+    },
+    {
+      "id": 2,
+      "title": "네이비 학잠 실신청",
+      "author": "눈송이2",
+      "product": "야구잠바",
+      "price": "39,000",
+      "people": "12명",
+      "date": "21.11.28 ~ 21.11.31",
+      "link": "https://search.shopping.naver.com/bbb",
+      "contact": "http://www.naver.com",
+      "description": "설명"
+    },
+    {
+      "id": 3,
+      "title": "눈송이 수면잠옷",
+      "author": "눈송이3",
+      "product": "수면잠옷",
+      "price": "30,000",
+      "people": "20명",
+      "date": "21.12.03 ~ 21.12.21",
+      "link": "https://search.shopping.naver.com/cc",
+      "contact": "http://www.naver.com",
+      "description": "설명"
+    }
+  ],
+  
+  "profile": [
+    {
+      "id": 1,
+      "author": "김눈송",
+      "email": "aaa@sookmyung.ac.kr"
+    }
+  ]
+}

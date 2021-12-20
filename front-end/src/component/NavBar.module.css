@@ -1,0 +1,19 @@
+.logo {
+  color: #82B1FF !important;
+  font-weight: bold;
+}
+
+.login {
+  background-color: #82B1FF;
+  border: none;
+}
+
+.logout {
+  background-color: #FF8A80;
+  border: none;
+  margin-right: 10px;
+}
+
+.logout:hover {
+  background-color: red;
+}
