@@ -20,7 +20,7 @@ export default function NavBar() {
             <Button variant="outline-success">Search</Button>
           </Form>
           <Nav className="ml-auto">
-            <Button className={styles.login}>Google 로그인</Button>
+            <a href="https://toyproject-sook.herokuapp.com/oauth2/authorization/google"><Button className={styles.login}>Google 로그인</Button></a>
             {/* 로그인 시 */}
             {/* <Button className={styles.logout}>로그아웃</Button>
             <Link to="/mypage"><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link> */}
