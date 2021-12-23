@@ -1,0 +1,61 @@
+
+
+.form-control {
+    /* border: 1px solid orange; */
+    /* display: inline; */
+}
+
+
+.term {
+    /* border: 2px solid blue; */
+    display: flex;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.WholeBox {
+    /*padding: 20px 20px 20px 20px;*/
+    /* display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center; */
+		display: grid;
+		place-content: center;
+}
+
+.ContentBox {
+    border-radius: 7%;
+    border: 1px solid black;
+		min-width: 470px;
+    padding: 30px 30px 30px 30px;
+}
+
+.items {
+    display: inline;
+}
+
+.btnArea1 {
+	/* display: inline-block;
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between; */
+	display: inline-flex;
+	margin-top: 10px;
+	float: right;
+}
+.btn.btn-danger {
+	margin-left: 5px;
+}
+.btn.btn-secondary {
+	margin-right: 5px;
+}
+
+.btnArea2 {
+	display: inline-flex;
+	margin-top: 10px;
+	float: right;
+}
+
+tr {
+  border: 1px solid pink;
+}
