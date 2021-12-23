@@ -1,13 +1,15 @@
 import '../Post.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function DetailPage(){
-	
+function DetailPage(id_){
+
 	const [show, setShow] = useState(false);
 	const [isModifyMode, setModifyMode] = useState(true);
 	const [isWriter, setWriter] = useState(true);					//작성자면 수정/삭제 버튼 있음
-	
+
 	const handleClose = () => setShow(false);
 	function handleShow(){
 		setShow(true);	
@@ -20,6 +22,24 @@ function DetailPage(){
 		}
 	}
 
+	//const { id } = useParams();
+	const id = id_;
+	//console.log(id);
+
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios.get(`/api/v1/posts/${id}`)
+      .then(function(response) {
+        setPosts(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }, []);
+
+  const postList = posts.filter(post => (post.id === Number(id))); // 전달받은 id값과 일치하는 데이터
+  console.log(postList)
+
 	return(
 		<>
 			<button type="button" className="btn btn-dark" data-toggle="modal" onClick={handleShow} data-whatever="@mdo">상세페이지</button>
@@ -31,20 +51,34 @@ function DetailPage(){
 						<>
 						<Modal.Body id="signin_window_body">
 							<Form>
-								<div className="cols">
-									<div className="one"> 
-										<div className="item_name">예상가격</div> <div id="price">9900</div></div><hr />
-									<div className="one"> 
-										<div className="item_name">공구기간</div> 
-										<div className="date">
-											<div id="date1">2021.12.22</div> ~ 
-											<div id="date2">2021.12.27</div></div>
-										</div><hr />
-									<div className="one"> <div className="item_name">상품링크</div> <div id="productlink">https://link1.com</div> </div> <hr />
-									<div className="one"> <div className="item_name">오픈채팅</div> <div id="openchat">https://link2.com</div> </div> <hr />
-									<div className="one"> <div className="item_name">설명</div> <div id="explaination">explaination</div> </div> <hr />
-									<div className="one"> <div className="item_name">기타</div> <div id="etc">etc</div></div> 
-								</div>
+							{postList.map(post => (
+								<table>
+									<tr>
+										<td>예상가격</td> 
+										<td id="price">{post.price}</td>
+									</tr>
+									<tr> 
+										<td className="item_name">공구기간</td> 
+										<td>{post.date}</td>
+									</tr>
+									<tr> 
+										<td>상품링크</td> 
+										<td>{post.link}</td>
+									</tr>
+									<tr> 
+										<td>오픈채팅</td> 
+										<td>https://link2.com</td>
+									</tr>
+									<tr> 
+										<td>설명</td> 
+										<td>explanation</td>
+									</tr>
+									<tr> 
+										<td>기타</td> 
+										<td>etc</td>
+									</tr> 
+								</table>
+								))}
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
@@ -56,22 +90,32 @@ function DetailPage(){
 						<>
 						<Modal.Body id="signin_window_body">
 							<Form>
-								<div className="cols">
-									<div className="one"> 
-										<div className="item_name">예상가격</div> 
-										<Form.Control className="line" type="text" placeholder="12,000" /> 
-									</div><hr />
-									<div className="one"> 
-										<div className="item_name">공구기간</div> 
-										<div className="date">
-											<Form.Control className="line" type="date" /> ~ <Form.Control className="line" type="date" /> 
-										</div>
-									</div><hr />
-									<div className="one"> <div className="item_name">상품링크</div> <Form.Control className="line" type="url" /> </div> <hr />
-									<div className="one"> <div className="item_name">오픈채팅</div> <Form.Control className="line" type="url" /> </div> <hr />
-									<div className="one"> <div className="item_name">설명</div> <Form.Control className="line" type="textarea" /> </div> <hr />
-									<div className="one"> <div className="item_name">기타</div> <Form.Control className="line" type="text" /></div> 
-								</div>
+								<table className='ModifyMode'>
+									<tr>
+										<td>예상가격</td> 
+										<td><Form.Control className="line" type="text" placeholder="12,000" /> </td>
+									</tr>
+									<tr> 
+										<td>공구기간</td> 
+										<td className='term'><Form.Control className="line" type="date" /> ~ <Form.Control className="line" type="date" /></td>
+									</tr>
+									<tr> 
+										<td>상품링크</td> 
+										<td><Form.Control className="line" type="url" /></td>
+									</tr>
+									<tr> 
+										<td>오픈채팅</td> 
+										<td><Form.Control className="line" type="url" /></td>
+									</tr>
+									<tr> 
+										<td>설명</td> 
+										<td><Form.Control className="line" type="textarea" /></td>
+									</tr>
+									<tr> 
+										<td>기타</td> 
+										<td><Form.Control className="line" type="text" /></td>
+									</tr> 
+								</table>
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>

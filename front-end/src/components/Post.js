@@ -2,7 +2,8 @@ import '../Post.css';
 import { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
-function Post(){
+function Post(clicked){
+	console.log(clicked)
 	
 	const [show, setShow] = useState(false);
 	
@@ -11,9 +12,13 @@ function Post(){
 		setShow(true);	
 	}
 
+	if(clicked){
+		handleShow();
+	}
+
 	return(
 		<>
-			<button type="button" className="btn btn-primary" data-toggle="modal" onClick={handleShow} data-whatever="@mdo">작성</button>
+			{/* <button type="button" className="btn btn-primary" data-toggle="modal" onClick={handleShow} data-whatever="@mdo">작성</button> */}
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton />
