@@ -30,7 +30,7 @@ class ItemListNew extends Component {
         
         {this.state.posts.map(post => (
         <div className={styles.container} key={post.id}>
-          <div className={styles.title}><Link to={`/posts/${post.id}`}>{post.title}</Link></div>
+          <div className={styles.title}>{post.title}</div>
           {/* <div className={styles.badge}>공구진행중</div> */}
           <div className={styles.author}>{post.author}</div>
           <table className={styles.table}>
