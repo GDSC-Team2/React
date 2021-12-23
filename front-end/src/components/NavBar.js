@@ -5,7 +5,7 @@ import { Button, Container, Navbar, Nav, Form, FormControl } from "react-bootstr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import GoogleLoginBtn from "./GoogleLoginBtn";
+import GoogleBtn from "./GoogleBtn";
 
 export default function NavBar() {
   return (
@@ -21,8 +21,7 @@ export default function NavBar() {
             <Button variant="outline-success">Search</Button>
           </Form>
           <Nav className="ml-auto">
-            <GoogleLoginBtn />
-            {/* <a href="https://toyproject-sook.herokuapp.com/oauth2/authorization/google"><Button className={styles.login}>Google 로그인</Button></a> */}
+            <GoogleBtn />
             {/* 로그인 시 */}
             {/* <Button className={styles.logout}>로그아웃</Button>
             <Link to="/mypage"><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link> */}

@@ -1,16 +1,11 @@
-// GoogleButton.js
-
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 
-function GoogleBtn({ onSocial }){
+function GoogleBtn() {
     const clientId = "194829055407-l327u9iqun69ol3sb3s0r267t2vq71gn.apps.googleusercontent.com";
-    const onSuccess = async(response) => {
-    	console.log(response);
-			console.log(response.googleId)
-			console.log(response.profileObj.name)
-			console.log(response.profileObj.email)
+    
+		const onSuccess = async(response) => {
 	
 			axios.post(
 				"/api/v1/user", {
@@ -29,16 +24,15 @@ function GoogleBtn({ onSocial }){
         console.log(error);
     }
 
-		//로그인 유지
-		const isSignedIn= () => {true}
-
     return(
         <div>
             <GoogleLogin
                 clientId={clientId}
                 responseType={"id_token"}
                 onSuccess={onSuccess}
-                onFailure={onFailure}/>
+                onFailure={onFailure}
+				// isSignedIn={true}
+			/>
         </div>
     )
 }
