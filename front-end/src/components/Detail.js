@@ -19,14 +19,18 @@ export default function Detail() {
 
   const postList = posts.filter(post => (post.id === Number(id))); // 전달받은 id값과 일치하는 데이터
 
-  const deleteHandler = (id) => {
-    // axios.delete(`/api/v1/posts/${id}`)
-    // .then(response => {
-    //   alert("삭제되었습니다.");
-    //   window.location.href = "/";
-    // }).catch(error => {
-    //   alert(error.response.data);
-    // });
+  // 글 삭제
+  const deleteHandler = (id, e) => {
+    e.preventDefault();
+    if (window.confirm("삭제하시겠습니까?")) {
+      axios.delete(`/api/v1/posts/${id}`)
+      .then(response => {
+        alert("삭제되었습니다.");
+        window.location.href = "/";
+      }).catch(error => {
+        alert(error.response.data);
+      });
+    } 
   }
 
   return (
@@ -44,7 +48,7 @@ export default function Detail() {
           <li>설명: {post.description}</li>
         </ul>
 
-        <Button variant="danger" onClick={deleteHandler(post.id)}>삭제</Button>
+        <Button variant="danger" onClick={(e) => {deleteHandler(post.id, e)}}>삭제</Button>
       </div>
     ))}
   </div>
