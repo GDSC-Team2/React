@@ -19,6 +19,8 @@ export default function ItemList() {
 
   return (
     <div>
+      <Link to="/create">글쓰기</Link> <br/>
+
       {posts.map(post => (
         <div className={styles.container} key={post.id}>
           <div className={styles.title}><Link to={`/posts/${post.id}`}>{post.title}</Link></div>
