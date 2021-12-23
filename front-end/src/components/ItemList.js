@@ -3,6 +3,7 @@ import styles from "./ItemList.module.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export default function ItemList() {
 
@@ -19,6 +20,8 @@ export default function ItemList() {
 
   return (
     <div>
+      <Link to="/create"><Button>글쓰기</Button></Link> <br/>
+      
       {posts.map(post => (
         <div className={styles.container} key={post.id}>
           <div className={styles.title}><Link to={`/posts/${post.id}`}>{post.title}</Link></div>
