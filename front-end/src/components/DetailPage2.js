@@ -1,4 +1,4 @@
-import '../Post.css';
+import '../components/Post.css';
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from 'axios';
@@ -29,12 +29,26 @@ function DetailPage2(){
 
   const postList = posts.filter(post => (post.id === Number(id)));
 
+		// 글 삭제
+		const deleteHandler = (id, e) => {
+			e.preventDefault();
+			if (window.confirm("삭제하시겠습니까?")) {
+				axios.delete(`/api/v1/posts/${id}`)
+				.then(response => {
+					alert("삭제되었습니다.");
+					window.location.href = "/";
+				}).catch(error => {
+					alert(error.response.data);
+				});
+			} 
+		}
+
 	function ChangeMode() {
 		if(isModifyMode === true) {
 			setModifyMode(false)
 			setTitle(postList[0].title);
 			setPrice(postList[0].price);
-			//setDate(postList[0].date);
+			setDate(postList[0].date);
 			setLink(postList[0].link);
 			setContact(postList[0].contact);
 			setDescription(postList[0].description);
@@ -94,7 +108,7 @@ function DetailPage2(){
     }
     ).then(response => {
       alert("수정되었습니다.");
-      window.location.href = "/";
+      window.location.href = `/posts/${id}`;
     }).catch(error => {
       alert(error.response.data);
     });
@@ -111,34 +125,38 @@ function DetailPage2(){
 					<div className='ContentBox'>
 						<Form className='items'>
 						{postList.map(post => (
-							<table>
-								<tr>
-									<td>예상가격</td> 
-									<td id="price">{post.price}</td>
-								</tr>
-								<tr> 
-									<td className="item_name">공구기간</td> 
-									<td>{post.date}</td>
-								</tr>
-								<tr> 
-									<td>상품링크</td> 
-									<td>{post.link}</td>
-								</tr>
-								<tr> 
-									<td>오픈채팅</td> 
-									<td>{post.contact}</td>
-								</tr>
-								<tr> 
-									<td>설명</td> 
-									<td>{post.description}</td>
-								</tr>
-							</table>
-							))}
+							<>
+								<h2>{post.title}</h2><hr/>
+								<table>
+									<tr>
+										<td>예상가격</td> 
+										<td id="price">{post.price}</td>
+									</tr>
+									<tr> 
+										<td className="item_name">공구기간</td> 
+										<td>{post.date}</td>
+									</tr>
+									<tr> 
+										<td>상품링크</td> 
+										<td>{post.link}</td>
+									</tr>
+									<tr> 
+										<td>오픈채팅</td> 
+										<td>{post.contact}</td>
+									</tr>
+									<tr> 
+										<td>설명</td> 
+										<td>{post.description}</td>
+									</tr>
+								</table>
+								<div className='btnArea1'>
+									<Button variant="primary" onClick={ChangeMode}>수정</Button>
+									<Button variant="danger" onClick={(e) => {deleteHandler(post.id, e)}}>삭제</Button>
+								</div>
+							</>
+						))}
 						</Form>
-						<div className='btnArea1'>
-							<Button variant="primary" onClick={ChangeMode}>수정</Button>
-							<Button variant="danger">삭제</Button>
-						</div>
+						
 					</div>
 				) : (
 					<div className='ContentBox'>
@@ -151,13 +169,11 @@ function DetailPage2(){
             </tr> 
             <tr>
               <td>예상가격</td> 
-              <td><Form.Control type="text" placeholder="12,000" onChange={priceChangeHandler} value={price}/></td>
+              <td><Form.Control type="text" onChange={priceChangeHandler} value={price}/></td>
             </tr>
             <tr> 
-              <td>공구기간</td> 
-              {/* <Form.Control type="date"/> ~  */}
-              {/* <td><Form.Control type="date" ref={dateRef}/></td> */}
-              <td><Form.Control type="date" onChange={dateChangeHandler} value={date}/></td>
+              <td>공구기간</td>
+              <td><Form.Control type="text" onChange={dateChangeHandler} value={date}/></td>
             </tr>
             <tr> 
               <td>상품링크</td> 
