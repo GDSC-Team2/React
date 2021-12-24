@@ -10,14 +10,19 @@ function GoogleBtn() {
     const clientId = "194829055407-l327u9iqun69ol3sb3s0r267t2vq71gn.apps.googleusercontent.com";
     
 		const onSuccess = async(response) => {
-	
+
+			// 브라우저에 정보 저장
+			window.localStorage.setItem("name", response.profileObj.name);
+			window.localStorage.setItem("email", response.profileObj.email);
+			window.localStorage.setItem("picture", response.profileObj.imageUrl);
+
 			axios.post(
 				"/api/v1/user", {
 					email : response.profileObj.email,
 					name : response.profileObj.name,
 					picture : response.profileObj.imageUrl
 				}).then(response => {
-					alert("로그인 되었습니다.");
+					// alert("로그인 되었습니다.");
 					setLogin(true);
 				}).catch(error => {
 					alert("로그인에 실패하였습니다.");
@@ -33,6 +38,11 @@ function GoogleBtn() {
 			alert("로그아웃 되었습니다.");
 			setLogin(false);
 			window.location.href = "/";
+
+			// 브라우저에서 정보 삭제
+			window.localStorage.removeItem("name");
+			window.localStorage.removeItem("email");
+			window.localStorage.removeItem("picture");
 		}
 
     return(

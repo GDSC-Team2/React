@@ -60,7 +60,8 @@ function App() {
       date: date,
       link: link,
       contact: contact,
-      description: description
+      description: description,
+      author: localStorage.getItem("name")
     }
     ).then(response => {
       alert("등록되었습니다.");
