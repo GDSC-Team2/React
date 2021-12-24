@@ -14,3 +14,11 @@
 .googleIcon{
   margin-right: 8px;
 }
+
+.addPost {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  color: royalblue;
+  cursor: pointer;
+}
