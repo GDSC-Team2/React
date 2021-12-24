@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyPage.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function MyPage() {
+
+  const author = localStorage.getItem("name");
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios.get(`/api/v1/posts/my/{author}?author=${author}`)
+      .then(function(response) {
+        setPosts(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div>
@@ -13,16 +26,14 @@ export default function MyPage() {
         <img src={localStorage.getItem("picture")} className={styles.profile} alt="profile_img" />
         <h3>{localStorage.getItem("name")}</h3>
         <p><FontAwesomeIcon icon={faEnvelope} size="1x" /> {localStorage.getItem("email")}</p>
-        <Button className={styles.resign}>회원 탈퇴</Button>
       </div>
       
       <div className={styles.myList}>
         <h3>내가 쓴 글</h3>
         <ul>
-          <li>네이비 학잠</li>
-          <li>눈송이 수면잠옷</li>
-          <li>눈꽃 플리스</li>
-          <li>공과대학 돕바</li>
+        {posts.map(post => (
+          <li key={post.id}><Link to={`/posts/${post.id}`}>{post.title}</Link></li>
+        ))}
         </ul>
       </div>
       
