@@ -15,7 +15,11 @@ function App() {
 
   const [show, setShow] = useState(false);
 	function handleShow() {
-		setShow(true);	
+    if(localStorage.getItem("name")) {
+      setShow(true);
+    } else {
+      alert("로그인 후 작성 가능합니다.");
+    }	
 	}
   const handleClose = () => setShow(false);
 

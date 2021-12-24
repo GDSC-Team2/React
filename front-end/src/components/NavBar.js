@@ -3,6 +3,7 @@ import styles from "./NavBar.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import GoogleBtn from "./GoogleBtn";
+import logo from '../logo.jpg';
 
 export default function NavBar() {
   return (
@@ -10,13 +11,9 @@ export default function NavBar() {
       <Navbar className="shadow-sm p-3 mb-5 bg-white rounded">
         <Container>
           <Navbar.Brand href="/" className={styles.logo}>
-            <img src="#" width="100px" alt="logo" />
+            <img src={logo} width="40px" alt="logo" style={{marginRight: '10px'}}/>
             공구리숙트
           </Navbar.Brand>
-          {/* <Form className="d-flex">
-            <FormControl type="search" placeholder="공구 검색" className="me-2" aria-label="Search" />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
           <Nav className="ml-auto">
             <GoogleBtn />
           </Nav>
