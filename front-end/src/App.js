@@ -6,6 +6,7 @@ import ItemList from './components/ItemList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import DetailPage2 from './components/DetailPage2';
+import MyPage from './components/MyPage';
 import { PlusCircleFill } from 'react-bootstrap-icons';
 import { Modal, Form, Button } from "react-bootstrap";
 import axios from 'axios';
@@ -77,6 +78,7 @@ function App() {
       <Routes>
         <Route path="/" element={<><ItemList /><PlusCircleFill className='addPost' size="70" onClick={handleShow}/></>} />
         <Route path="/posts/:id" element={<DetailPage2 />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
       
       <Modal show={show} onHide={handleClose}>

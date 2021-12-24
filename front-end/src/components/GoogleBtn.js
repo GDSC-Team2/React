@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function GoogleBtn() {
     const [islogin, setLogin] = useState(false);
@@ -16,7 +19,6 @@ function GoogleBtn() {
 				}).then(response => {
 					alert("로그인 되었습니다.");
 					setLogin(true);
-					window.location.href = "/";
 				}).catch(error => {
 					alert("로그인에 실패하였습니다.");
 					console.log(error.response.data);
@@ -36,11 +38,14 @@ function GoogleBtn() {
     return(
         <div>
             {islogin ? (
+							<>
               <GoogleLogout
 								clientId={clientId}
 								buttonText='Logout'
 								onLogoutSuccess={logout}
 							/>
+							<Link to="/mypage"><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link>
+							</>
             ) : (
 							<GoogleLogin
 								clientId={clientId}
@@ -48,7 +53,7 @@ function GoogleBtn() {
 								responseType={"id_token"}
 								onSuccess={onSuccess}
 								onFailure={onFailure}
-								// isSignedIn={true}
+								isSignedIn={true}
 							/>
             )}
             
