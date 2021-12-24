@@ -1,7 +1,13 @@
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .container {
   display: inline-block;
   width: 300px;
-  height: 300px;
+  height: 250px;
   border-radius: 10%;
   border: 1px solid black;
   padding: 20px 20px 20px 20px;
@@ -35,4 +41,15 @@
 
 .table {
   width: 100%;
+  table-layout: fixed;
 }
+
+.table th {
+  width: 100px;
+}
+
+.table td {
+  overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+  }

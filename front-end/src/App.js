@@ -5,11 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemList from './components/ItemList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import DetailPage2 from './components/DetailPage2';
+import DetailPage from './components/DetailPage';
 import MyPage from './components/MyPage';
 import { PlusCircleFill } from 'react-bootstrap-icons';
 import { Modal, Form, Button } from "react-bootstrap";
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt, faComments, faInfoCircle, faLink, faWonSign, faTags } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
 
@@ -82,7 +84,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<><ItemList /><PlusCircleFill className='addPost' size="70" onClick={handleShow}/></>} />
-        <Route path="/posts/:id" element={<DetailPage2 />} />
+        <Route path="/posts/:id" element={<DetailPage />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
       
@@ -92,27 +94,27 @@ function App() {
           <Modal.Body>
             <table className='postForm'>
               <tr> 
-                <td>제목</td> 
+                <td><FontAwesomeIcon icon={faTags} size="1x" /> 제목</td> 
                 <td><Form.Control type="text" name="title" value={title} onChange={titleChangeHandler} placeholder="제목" /></td>
               </tr> 
               <tr>
-                <td>예상가격</td> 
+                <td><FontAwesomeIcon icon={faWonSign} size="1x" /> 예상가격</td> 
                 <td><Form.Control type="text"name="price" value={price} onChange={priceChangeHandler} placeholder="예상 가격" /></td>
               </tr>
               <tr> 
-                <td>공구기간</td> 
+                <td><FontAwesomeIcon icon={faCalendarAlt} size="1x" /> 공구기간</td> 
                 <td><Form.Control type="text" name="date" value={date} onChange={dateChangeHandler} placeholder="신청 기간" /></td>
               </tr>
               <tr> 
-                <td>상품링크</td> 
+                <td><FontAwesomeIcon icon={faLink} size="1x" /> 상품링크</td> 
                 <td><Form.Control type="text" name="link" value={link} onChange={linkChangeHandler} placeholder="상품 링크" /></td>
               </tr>
               <tr> 
-                <td>오픈채팅</td> 
+                <td><FontAwesomeIcon icon={faComments} size="1x" /> 오픈채팅</td> 
                 <td><Form.Control type="text" name="contact" value={contact} onChange={contactChangeHandler} placeholder="오픈채팅 링크" /></td>
               </tr>
               <tr> 
-                <td>설명</td> 
+                <td><FontAwesomeIcon icon={faInfoCircle} size="1x" /> 설명</td> 
                 <td><Form.Control type="text" name="description" value={description} onChange={descriptionChangeHandler} placeholder="기타" /></td>
               </tr>
             </table>

@@ -1,17 +1,4 @@
-@font-face {
-  font-family: 'Nanum Gothic';
-  src: url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-}
-
-.App{
-  font-family: 'Nanum Gothic';
-}
-
-.btn.btn-primary{
-  font-family: 'Nanum Gothic';
-}
-
-.googleIcon{
+.googleIcon {
   margin-right: 8px;
 }
 
